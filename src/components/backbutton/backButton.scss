@@ -1,0 +1,11 @@
+.backButton {
+  position: fixed;
+  z-index: 5;
+  top: 3rem;
+  left: 3rem;
+  cursor: pointer;
+  transition: ease all 0.3s;
+}
+.backButton:hover {
+  transform: scale(1.1);
+}

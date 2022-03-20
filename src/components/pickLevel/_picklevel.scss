@@ -1,0 +1,5 @@
+.levelform {
+  @include flex-2(center, flex-start);
+  width: 80%;
+  gap: 2rem;
+}

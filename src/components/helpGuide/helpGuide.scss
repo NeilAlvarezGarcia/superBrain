@@ -1,0 +1,56 @@
+.help {
+  @include flex-1(center, center);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($black, 0.3);
+}
+.container-help {
+  @include flex-2(center, space-around);
+  gap: 2rem;
+  width: min(85%, 50rem);
+  background-color: #fff;
+  padding: 3rem 1rem;
+  border-radius: $rounded;
+  text-align: center;
+  position: relative;
+}
+
+.container-help .buttons {
+  @include flex-1(center, center);
+  position: absolute;
+  bottom: -20%;
+  background-color: rgba($black, 0.2);
+}
+.container-help .buttons:hover {
+  position: absolute;
+  background-color: rgba($black, 0.4);
+}
+.left {
+  left: 2.5rem;
+  transform: translateX(-50%);
+}
+.right {
+  right: 2.5rem;
+  transform: translateX(50%);
+}
+
+.instructions-container {
+  @include flex-2(space-around, center);
+  gap: 1rem;
+}
+.instructions-container p {
+  line-height: 1.5;
+  font-size: 1.5rem;
+  color: $secondary;
+}
+.container-help a {
+  font-size: 1.5rem;
+  color: $primary;
+  text-decoration: none;
+}
+.container-help a:hover {
+  text-decoration: underline;
+}

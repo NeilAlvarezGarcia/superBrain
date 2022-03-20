@@ -1,0 +1,43 @@
+// colors
+$bg: rgb(56, 208, 222);
+$primary: rgba(69, 131, 255);
+$secondary: rgb(144, 144, 144);
+$red: rgba(255, 14, 14);
+$green: rgb(62, 173, 14); 
+$yellow: rgba(246, 243, 23);
+$pink: rgba(255, 110, 176);
+$white: rgba(255, 255, 255);
+$black: rgba(0, 0, 0);
+
+// shadow 
+$shadow: 0 0 .5rem .5rem rgba(0, 0, 0, .2);
+
+// rounded
+$rounded: 1rem;
+
+
+@mixin flex-1 ($x, $y) {
+    display: flex;
+    justify-content: $x;
+    align-items: $y;
+}
+@mixin flex-2($x, $y) {
+    @include flex-1($x, $y);
+
+    flex-direction: column;
+}
+
+
+// class colors
+.blue {
+    color: $primary;
+}
+.red {
+    color: $red;
+}
+.green {
+    color: $green;
+}
+.yellow {
+    color: $yellow;
+}
