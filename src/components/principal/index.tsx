@@ -21,13 +21,13 @@ const index = () => {
             <FontAwesomeIcon icon={faBrain} className='brain'/>
             <FontAwesomeIcon icon={faGear} className='gear'/>
         </div>
-        <p className='principal-text'>Challange your brain and improve your abilities by playing a simple game.</p>
+        <p className='principal-text fs-4'>Challange your brain and improve your abilities by playing a simple game.</p>
         <div className="prinicpal-buttons">
           <Link to='trivia'>
-            <button className='btn btn-primary fs-4'>Trivia Game</button>
+            <button className='btn btn-primary fs-3'>Trivia Game</button>
           </Link>
           <Link to='math'>
-            <button className='btn btn-primary fs-4'>Math Game</button>
+            <button className='btn btn-primary fs-3'>Math Game</button>
           </Link>
         </div>
     </div>

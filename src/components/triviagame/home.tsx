@@ -15,13 +15,13 @@ const home = () => {
         </div>
         <div className="trivia-buttons">
             <Link to='gaming' className='w-100'>
-            <button className='btn btn-primary fs-4 w-100'>Start Game</button>
+            <button className='btn btn-primary fs-3 w-100'>Start Game</button>
             </Link>
             <Link to='instructions' className='w-100'>
-                <button className='btn btn-primary fs-4 w-100'>Instructions</button>
+                <button className='btn btn-primary fs-3 w-100'>Instructions</button>
             </Link>
             <Link to='picklevel' className='w-100'>
-                <button className='btn btn-primary fs-4 w-100'>Pick Level</button>
+                <button className='btn btn-primary fs-3 w-100'>Pick Level</button>
             </Link>
         </div>
         </div>
