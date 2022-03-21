@@ -23,7 +23,7 @@ const Game = () => {
   const [timer, setTimer] = useState(INITTIMER);
   const [count, setCount] = useState(3);
   const [question, setQuestion] = useState<Question>();
-  const [userAnswer, setUserAnswer] = useState<boolean>(false);
+  const [userAnswer, setUserAnswer] = useState<string>('');
   const [score, setScore] = useState(0);
 
   const pickQuestion = useCallback(async () => {
@@ -35,23 +35,27 @@ const Game = () => {
 
     const {results: {0: {category, correct_answer, incorrect_answers, question}}} = res;
 
+    const answers = [...incorrect_answers, correct_answer].sort(() => Math.random() - 0.5)
+
     const newQuestion:Question = {
         category,
         correct_answer,
         incorrect_answers,
-        answers: [...incorrect_answers, correct_answer],
+        answers,
         question,
     }
 
     setQuestion(newQuestion);
-  }, [])
+  }, [levelTrivia])
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, answer: string) => {
-    setUserAnswer(true);
     if(answer === question?.correct_answer) {
         setScore(score + 10);
+        setUserAnswer('Correct');
         return e.currentTarget.classList.add('bg-good', 'text-white');
     }
+    setUserAnswer('Incorrect');
+    setScore(0);
     e.currentTarget.classList.add('bg-bad', 'text-white');
   }
 
@@ -80,7 +84,16 @@ const Game = () => {
         clearTimeout(timerControler)
         
     }
-  }, [timer, count, question])
+  }, [timer, count, question, pickQuestion, userAnswer]);
+
+  useEffect(() => {
+    const scoreStorage = localStorage.getItem('triviaScore');
+    if(scoreStorage) {
+        if(Number(scoreStorage) < score) localStorage.setItem('triviaScore', score.toString());
+    } else {
+        localStorage.setItem('triviaScore', score.toString());
+    }
+  }, [score]);
 
   return (
     <>
@@ -96,18 +109,24 @@ const Game = () => {
                 <div className="third d-flex justify-content-center align-items-center text-center px-2">
                     {question && <p className='text-black fs-5 px-2' dangerouslySetInnerHTML={{__html: question.question}}/>}
                     {count > 0 && <p className='count'>{count}</p>}
+                    {userAnswer !== '' && <p className={`typeAnswer fs-1 fw-bold ${userAnswer !== '' && userAnswer === 'Correct' && 'green'} ${userAnswer !== '' && userAnswer === 'Incorrect' && 'red'}`}>{userAnswer}</p>}
                     <p>{}</p>
                 </div>
             </div>
-            <div className="container-answer w-100">
+            <div className="container-answer w-100 mt-3">
                 {question?.answers.map((answer: string, index: number) => (
-                    <button key={index} disabled={userAnswer} className='text-black rounded w-100 fs-4' onClick={e => handleClick(e, answer)} dangerouslySetInnerHTML={{__html: answer}}/>
+                    <button key={index} disabled={userAnswer !== '' || timer <= 0} className='text-black rounded w-100 fs-5' onClick={e => handleClick(e, answer)} dangerouslySetInnerHTML={{__html: answer}}/>
                 ))}
             </div>
 
-            {userAnswer && (
-                <button onClick={() => setCount(3)} className='btn btn-primary w-100 fs-4'>Next question</button>
-            )}
+            {userAnswer || timer <= 0 ? (
+                <button onClick={() => {
+                    setQuestion(undefined);
+                    setCount(3);
+                    setTimer(INITTIMER);
+                    setUserAnswer('');
+                }} className='btn btn-primary w-100 fs-4 mt-4'>{userAnswer === 'Incorrect' || timer <= 0 ? 'Try Again' : 'Next Question'}</button>
+            ) : null}
         </div>
     </>
   )

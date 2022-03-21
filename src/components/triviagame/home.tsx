@@ -13,6 +13,7 @@ const home = () => {
         <div className="container think-container">
             <img src={think} alt="think" className='think w-100 rounded' />
         </div>
+        <p className='text-white fs-2 fw-bold'>Highest score: {localStorage.getItem('triviaScore') || 0}</p>
         <div className="trivia-buttons">
             <Link to='gaming' className='w-100'>
             <button className='btn btn-primary fs-3 w-100'>Start Game</button>
