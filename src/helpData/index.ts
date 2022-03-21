@@ -14,7 +14,7 @@ export const mathInstructions: asset[] = [
 
 export const triviaInstructions: asset[] = [
     {title: 'Step 1', parragraph: 'The rules of this game are simple. There will be randomly pick up a topic.'},
-    {title: 'Step 2', parragraph: 'A question about that certain topic will be given and a count down of 20 seg will start.'},
+    {title: 'Step 2', parragraph: 'A question about that certain topic will be given and a count down of Xseg will start.'},
     {title: 'Step 3', parragraph: 'You´ll have to select the right answer before the count comes to 0, in order to accumulate points to the score.'},
     {title: 'Step 4', parragraph: 'Once you select a wrong answer, the game will be over and the final score accumulated will be shown.'}
 ]

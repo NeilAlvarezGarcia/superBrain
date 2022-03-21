@@ -23,14 +23,25 @@ const takeLevel = (db: string): string => {
   if(level) return level;
   else return 'easy';
 }
+const takeHelp = (db: string): boolean => {
+  const help = localStorage.getItem(db);
+
+  if(help) return false;
+  else return true;
+}
 
 const ContextProvider: FC<PropsType> = ({children}) => {
   const [levelTrivia, setLevelTrivia] = useState<string>(takeLevel('triviaLevel'));
+  const [triviaHelp, settriviaHelp] = useState<boolean>(takeHelp('triviaHelp'))
   const [levelMath, setLevelMath] = useState<string>(takeLevel('mathLevel'));
 
   const setTriviaLevel = (level: string) => {
     localStorage.setItem('triviaLevel', level);
     setLevelTrivia(level);
+  }
+  const setTriviaHelp = (help: boolean) => {
+    localStorage.setItem('triviaHelp', 'not');
+    settriviaHelp(help);
   }
   const setMathLevel = (level: string) => {
     localStorage.setItem('mathLevel', level);
@@ -40,6 +51,8 @@ const ContextProvider: FC<PropsType> = ({children}) => {
   const state = {
     levelTrivia,
     setTriviaLevel,
+    triviaHelp,
+    setTriviaHelp,
     levelMath,
     setMathLevel
   }
