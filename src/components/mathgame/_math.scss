@@ -1,3 +1,18 @@
 .math {
-  background-color: #f63d3d;
+	background-color: #f63d3d;
+}
+
+.container-answer input {
+	letter-spacing: 10px;
+}
+
+.container-answer input::-webkit-outer-spin-button,
+.container-answer input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+.container-answer input[type='number'] {
+	-moz-appearance: textfield;
 }
